@@ -107,7 +107,9 @@ WHERE
 	AND (t.to_date = '9999-01-01');  
 ```
 ***Image Top 20 all_titles_retiring rows***
-!(All_Titles_Retiring)[All_Titles_Retiring.png]
+
+!(All_Title_Retiring)[All_Titles_Retiring.png]
+
 ***Total Results: 33118 rows*** 
 
 

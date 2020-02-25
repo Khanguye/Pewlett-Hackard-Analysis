@@ -121,6 +121,9 @@ WHERE
 - Title
 - Count
 
+
+***Plan To Queries:***
+
 ***Using all_titles_retiring table to answer***
 
 - All retiring employees are currently holding a title in the company
@@ -180,3 +183,93 @@ ORDER BY
 	title;
 -- 7 rows
 ```
+
+***Question 3*** A list of potential mentors who can be promoted or step-up : "Who’s Ready for a Mentor?"
+
+***Required Columns:*** 
+
+- Employee number
+- First name 
+- Last name
+- Title
+- From date 
+- To date
+
+***Plan To Queries:***
+
+***ERD-Explore Plan***
+
+![ready_become_mentors_ERD](ready_become_mentors_ERD.png)
+
+***Plan to execute with SQL***
+
+- Need to inner join to tables: Employees, Titles
+- Find poeple were born between 1965-01-01 AND 1965-12-31
+- And current employee so the title to_date is 9999-01-01
+- Order by Last name and First name
+- Select Columns:
+1- Employee Number from Employees
+2- First Name from Employees
+3- Last Name from Employees
+4- Title from Titles
+5- From Date from Titles
+6- To date from Titles
+- Create ready_become_mentors table 
+
+```
+SELECT 
+	e.emp_no, e.first_name, e.last_name, t.title, t.from_date, t.to_date
+INTO ready_become_mentors
+FROM
+	public.employees AS e
+	INNER JOIN public.titles AS t on e.emp_no = t.emp_no
+WHERE 
+	e.birth_date BETWEEN '1965-01-01' AND '1965-12-31'
+	AND t.to_date = '9999-01-01'
+ORDER BY 
+	e.last_name, e.first_name;
+```
+
+***Image Top 20 ready_become_mentors rows***
+
+![ready_become_mentors](ready_become_mentors.png)
+
+***Total Results: 1549 rows*** 
+
+***Summary***: Let put the retiring titles and mentoring titles of current employees in the same view
+
+***Plan To Queries:***
+
+- Titles
+- Retiring Titles
+- Mentoring Titles
+
+***Plan To Queries:***
+
+***Plan to execute with SQL***
+- Create a tempory common table that group and count titles of ready_become_mentors
+- Let join title_counts and the temporary table
+- Use LEFT JOIN for title_counts
+
+```
+With titles_mentors as (
+SELECT Title, Count(Title) FROM ready_become_mentors
+GROUP BY Title
+Order by title
+	)
+Select
+tr.title, tr.count as retiring_title, tm.count as mentoring_titles, tr.count - tm.count as need_hiring_titles
+FROM
+title_counts as tr LEFT JOIN 
+titles_mentors tm ON tr.title = tm.title
+Order By tr.title
+```
+
+***Image SQL Results***
+
+![Position_Need_To_Fill](Position_Need_To_Fill.png)
+
+***Total Results: 7 rows*** 
+
+Conclusion:
+

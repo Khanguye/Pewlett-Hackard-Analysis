@@ -146,7 +146,7 @@ ORDER BY
 
 ***Total Results: 7 rows*** 
 
-***NOTE:*** We can use an alternative way to solve this issue if we think a person can have multiple titles during his/her career. The result are still the same.
+***NOTE:*** We can use an alternative way to solve this issue if we think a person can have multiple titles. The result are still the same.
 ```
 -- Create a Common Table Expressions: is a temporary table during execute SQL expressions 
 -- Row_Number() is increased for each data row execute, however it can  be increased 

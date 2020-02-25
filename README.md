@@ -149,9 +149,11 @@ ORDER BY
 ***NOTE:*** We can use an alternative way to solve this issue if we think a person can have multiple titles during his/her career. The result are still the same.
 ```
 -- Create a Common Table Expressions: is a temporary table during execute SQL expressions 
--- Row_Number() is increased for each data row execute, however it can  be increased or reset back over the Partition data
+-- Row_Number() is increased for each data row execute, however it can  be increased 
+-- 	or reset back over the Partition data
 -- Partition data is grouping data in the similar information and oragnized by particular data order
--- so that Row_Number() can be increased in the same group data rows and reset back value when the new group data is next
+-- so that Row_Number() can be increased in the same group data rows 
+-- 	and reset back value when the new group data is next
 -- Order_Number keeps Row_number() in the each partition
 WITH titles_retiring AS(
 SELECT 

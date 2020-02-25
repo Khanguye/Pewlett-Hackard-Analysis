@@ -279,5 +279,35 @@ Order By tr.title
 
 ***Total Results: 7 rows*** 
 
-Conclusion:
+___
+
+***Conclusion:***
+Looking to the number of employees who are presently eligible for retirement and also the number of mentoring employees, we can recognize that they are very hug different. The retiring employees are 33,118 and the mentoring employees are 1,549. If all retiring employees take the package services tomorrow, Pewlett Hackard company needs immediately to fill 33,118 positions. In addition, each mentor needs to train about 22 new employees (33,118/1,549 = 21.4). Let break down more in the job titles. Looking the table where the retiring employees title counts and metoring employees title counts, we can find the break down of each title category. We can spot some interesting points from the table. First, there are two manager positions in the retiring title column, but there is none in mentoring title column. Second, there are many Senior Engineer and Senior Engineer positions in the retiring title column compare to the mentoring title column. Pewlett Hackard needs to fill a lot of Senior Engineer and Senior Staff. If its business is based on Senior Engineer and Staff, it needs to make this this most important task. Pewlett Hackard aslo need to analyze the leadship manager positions. If the manager positions are critical to the Company, then it needs to find replacement for these positions.
+
+___
+***Recommend further analysis:*** the statistics salary of retiring employees and the report to Manager Directors so it can help  them make a decision and a future strategy for the company
+
+***Salary Statistics of retiring employees***
+
+```
+SELECT 'Assistant Engineer' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Assistant Engineer')
+UNION
+SELECT 'Engineer' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Engineer')
+UNION
+SELECT 'Manager' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Manager')
+UNION
+SELECT 'Senior Engineer' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Senior Engineer')
+UNION
+SELECT 'Senior Staff' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Senior Staff')
+UNION
+SELECT 'Staff' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Staff')
+UNION
+SELECT 'Technique Leader' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Technique Leader')
+```
+
+***Results***
+
+![Salary_Stats_Retiring_Employees](Salary_Stats_Retiring_Employees.png)
+
+
 

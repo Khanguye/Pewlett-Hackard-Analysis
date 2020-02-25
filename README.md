@@ -8,6 +8,27 @@ To create the new list of potential mentors, we need to create a query that retu
 2. a list of most recent titles: "The Most Recent Titles"
 3. a list of potential mentors: "Who’s Ready for a Mentor?"
 
+***Extra:***
+
+1. Side By Side position title of retiring and mentoring employees
+2. Salary statistics of retiring employees
+___
+
+#### Database
+
+Postgre 11
+pgAdim version 4.18
+
+#### SQL Scripts 
+
+(Queries/DML/challenge.sql)[Queries/DML/challenge.sql]
+
+#### Export CSV files
+
+(Data/all_titles_retiring.csv)[Data/all_titles_retiring.csv]
+(Data/title_counts.csv)[Data/title_counts.csv]
+(Data/ready_to_mentors.csv)[Data/ready_to_mentors.csv]
+
 ___
 
 ### ERD Pewlett Hackard Employees

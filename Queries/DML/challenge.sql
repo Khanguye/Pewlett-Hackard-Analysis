@@ -88,7 +88,7 @@ ORDER BY
 
 
 --Potential Hirings or Remotings needs to fill up
---Columns: Titles, Retiring Titles, Mentoring Titles, Need Hiring Titles
+--Columns: Titles, Retiring Titles, Mentoring Titles
 --Need to LEFT JOIN for title_counts
 With titles_mentors as (
 SELECT Title, Count(Title) FROM ready_become_mentors
@@ -101,3 +101,18 @@ FROM
 title_counts as tr LEFT JOIN 
 titles_mentors tm ON tr.title = tm.title
 Order By tr.title
+
+-- Salary Statistics of Retiring employees
+SELECT 'Assistant Engineer' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Assistant Engineer')
+UNION
+SELECT 'Engineer' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Engineer')
+UNION
+SELECT 'Manager' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Manager')
+UNION
+SELECT 'Senior Engineer' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Senior Engineer')
+UNION
+SELECT 'Senior Staff' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Senior Staff')
+UNION
+SELECT 'Staff' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Staff')
+UNION
+SELECT 'Technique Leader' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Technique Leader')

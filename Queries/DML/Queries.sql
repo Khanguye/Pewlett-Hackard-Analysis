@@ -62,7 +62,7 @@ SELECT retirement_info.emp_no,
 	retirement_info.first_name,
 retirement_info.last_name,
 	dept_emp.to_date
-FROM retirement_info LEFT JOIN dept_employees
+FROM retirement_info LEFT JOIN dept_emp
 ON retirement_info.emp_no = dept_emp.emp_no;
 
 -- Joining retirement_info and dept_emp tables
@@ -71,7 +71,7 @@ SELECT re.emp_no,
 re.last_name,
 	de.to_date
 FROM retirement_info re
-LEFT JOIN dept_employees de
+LEFT JOIN dept_emp de
 ON re.emp_no = de.emp_no;
 
 --- Dump current employees to table
@@ -81,7 +81,7 @@ SELECT ri.emp_no,
 de.to_date
 INTO current_emp
 FROM retirement_info as ri
-LEFT JOIN dept_employees as de
+LEFT JOIN dept_emp as de
 ON ri.emp_no = de.emp_no
 WHERE de.to_date = ('9999-01-01');
 ---
@@ -91,7 +91,7 @@ select * from current_emp;
 -- Employee count by department number
 SELECT COUNT(ce.emp_no), de.dept_no
 FROM current_emp as ce
-LEFT JOIN dept_employees as de
+LEFT JOIN dept_emp as de
 ON ce.emp_no = de.emp_no
 GROUP BY de.dept_no;
 
@@ -99,7 +99,7 @@ GROUP BY de.dept_no;
 SELECT COUNT(ce.emp_no), de.dept_no
 INTO breakdown_department
 FROM current_emp as ce
-LEFT JOIN dept_employees as de
+LEFT JOIN dept_emp as de
 ON ce.emp_no = de.emp_no
 GROUP BY de.dept_no
 ORDER BY de.dept_no;
@@ -129,7 +129,7 @@ e.last_name,
 FROM employees as e
 INNER JOIN salaries as s
 ON (e.emp_no = s.emp_no)
-INNER JOIN dept_employees as de
+INNER JOIN dept_emp as de
 ON (e.emp_no = de.emp_no)
 WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
      AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
@@ -161,7 +161,7 @@ ce.last_name,
 d.dept_name	
 INTO dept_info
 FROM current_emp as ce
-INNER JOIN dept_employees AS de
+INNER JOIN dept_emp AS de
 ON (ce.emp_no = de.emp_no)
 INNER JOIN departments AS d
 ON (de.dept_no = d.dept_no);
@@ -176,7 +176,7 @@ emp.first_name,
 emp.last_name,
 de.dept_name
 INTO sale_emp_info
-FROM Employees emp JOIN Dept_employees dep ON emp.emp_no = dep.emp_no
+FROM Employees emp JOIN dept_emp dep ON emp.emp_no = dep.emp_no
 JOIN Departments de ON dep.dept_no = de.dept_no
 WHERE (emp.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 AND (emp.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
@@ -189,7 +189,7 @@ emp.first_name,
 emp.last_name,
 de.dept_name
 INTO sale_dev_emp_info
-FROM Employees emp JOIN Dept_employees dep ON emp.emp_no = dep.emp_no
+FROM Employees emp JOIN dept_emp dep ON emp.emp_no = dep.emp_no
 JOIN Departments de ON dep.dept_no = de.dept_no
 WHERE (emp.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 AND (emp.hire_date BETWEEN '1985-01-01' AND '1988-12-31')

@@ -1,18 +1,16 @@
 /*** Get All Titles Retiring ***/
--- Find poeple were born between 1952-01-01 AND 1955-12-31
--- And also hired date between 1985-01-01 AND 1988-12-31
--- List the information:
--- 1- Employee Number
--- 2- First Name
--- 3- Last Name
--- 4- Title
--- 5- From Date (holding title)
--- 6- Salary
---- Need to join to tables: Employees, Titles, Salaries
---- Employees, Titles on Employee Number (Each employee has many titles during the career at Pewlett Hackard and kept track by Employee Number)
---- Employees, Salaries on Employee Number (Each Employee get a salary and aslo kept track by Employee Number)
---- Filters: birth_date between 1952-01-01 and 1955-12-31 and hire_date between 1985-01-01 and 1988-12-31
---- current employee so the title to_date is 9999-01-01
+-- - Need to inner join to tables: Employees, Titles, Salaries
+-- - Find poeple were born between 1952-01-01 AND 1955-12-31
+-- - And hired date between 1985-01-01 AND 1988-12-31
+-- - And current employee so the title to_date is 9999-01-01
+-- - Select Columns:
+-- 1- Employee Number from Employees
+-- 2- First Name from Employees
+-- 3- Last Name from Employees
+-- 4- Title from Titles
+-- 5- From Date from Titles
+-- 6- Salary from Salaries
+-- - Create all_titles_retiring table 
 SELECT 
 	e.emp_no, e.first_name, e.last_name, t.title, t.from_date, s.salary
 INTO all_titles_retiring
@@ -88,3 +86,18 @@ ORDER BY
 	e.last_name, e.first_name;
 -- 1549 rows
 
+
+--Potential Hirings or Remotings needs to fill up
+--Columns: Titles, Retiring Titles, Mentoring Titles, Need Hiring Titles
+--Need to LEFT JOIN for title_counts
+With titles_mentors as (
+SELECT Title, Count(Title) FROM ready_become_mentors
+GROUP BY Title
+Order by title
+	)
+Select
+tr.title, tr.count as retiring_title, tm.count as mentoring_titles, tr.count - tm.count as need_hiring_titles
+FROM
+title_counts as tr LEFT JOIN 
+titles_mentors tm ON tr.title = tm.title
+Order By tr.title

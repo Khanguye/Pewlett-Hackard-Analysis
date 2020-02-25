@@ -77,7 +77,7 @@ to_date date
 
 ***ERD-Explore Plan***
 
-!(All_Title_Retiring)[All_Titles_Retiring_ERD.png]
+![All_Title_Retiring](All_Titles_Retiring_ERD.png)
 
 ***Plan to execute with SQL***
 
@@ -108,7 +108,7 @@ WHERE
 ```
 ***Image Top 20 all_titles_retiring rows***
 
-!(All_Title_Retiring)[All_Titles_Retiring.png]
+![All_Title_Retiring](All_Titles_Retiring.png)
 
 ***Total Results: 33118 rows*** 
 

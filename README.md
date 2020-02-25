@@ -4,9 +4,9 @@
 
 To create the new list of potential mentors, we need to create a query that returns a list of current employees eligible for retirement, as well as their most recent titles
 
-1. a list of current employees eligible for retirement: "Number of titles-Retiring"
-2. a list of most recent titles: "The Most Recent Titles"
-3. a list of potential mentors: "Who’s Ready for a Mentor?"
+1. A list of current employees eligible for retirement: "Number of titles-Retiring"
+2. A list of most recent titles: "The Most Recent Titles"
+3. A list of potential mentors: "Who’s Ready for a Mentor?"
 
 ***Extra:***
 
@@ -16,18 +16,18 @@ ___
 
 #### Database
 
-Postgre 11
-pgAdim version 4.18
+- Postgre 11
+- pgAdim version 4.18
 
 #### SQL Scripts 
 
-(Queries/DML/challenge.sql)[Queries/DML/challenge.sql]
+[Queries/DML/challenge.sql](Queries/DML/challenge.sql)
 
 #### Export CSV files
 
-(Data/all_titles_retiring.csv)[Data/all_titles_retiring.csv]
-(Data/title_counts.csv)[Data/title_counts.csv]
-(Data/ready_to_mentors.csv)[Data/ready_to_mentors.csv]
+- [Data/all_titles_retiring.csv](Data/all_titles_retiring.csv)
+- [Data/title_counts.csv](Data/title_counts.csv)
+- [Data/ready_to_mentors.csv](Data/ready_to_mentors.csv)
 
 ___
 
@@ -84,7 +84,7 @@ to_date date
 ```
 ***SQL Scripts to create tables and relationships***
 
-[Schema Files](Queries/DDL/schema.sql)
+[Queries/DDL/schema.sql](Queries/DDL/schema.sql)
 
 ___
 

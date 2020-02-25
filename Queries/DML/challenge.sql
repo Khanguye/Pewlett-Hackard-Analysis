@@ -11,9 +11,11 @@
 --- Need to join to tables: Employees, Titles, Salaries
 --- Employees, Titles on Employee Number (Each employee has many titles during the career at Pewlett Hackard and kept track by Employee Number)
 --- Employees, Salaries on Employee Number (Each Employee get a salary and aslo kept track by Employee Number)
+--- Filters: birth_date between 1952-01-01 and 1955-12-31 and hire_date between 1985-01-01 and 1988-12-31
+--- current employee so the title to_date is 9999-01-01
 SELECT 
 	e.emp_no, e.first_name, e.last_name, t.title, t.from_date, s.salary
-INTO All_Titles_Retiring
+INTO all_titles_retiring
 FROM
 	public.employees as e 
 	INNER JOIN public.titles as t ON e.emp_no = t.emp_no 
@@ -21,6 +23,8 @@ FROM
 WHERE 
 	(e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 	AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+	AND (t.to_date = '9999-01-01');
+-- 33118 rows 
 
 /*** Only the Most Recent Titles of retirings ***/
 -- Create a Common Table Expressions: is a temporary table during execute SQL expressions 
@@ -28,7 +32,7 @@ WHERE
 -- Partition data is grouping data in the similar information and oragnized by particular data order
 -- so that Row_Number() can be increased in the same group data rows and reset back value when the new group data is next
 -- Order_Number keeps Row_number() in the each partition
-;WITH titles_retiring AS(
+WITH titles_retiring AS(
 SELECT 
 	emp_no, first_name, last_name, title, from_date, salary, 
 	Row_Number() Over (Partition By emp_no ORDER BY from_date DESC) AS Order_Number 
@@ -51,6 +55,20 @@ GROUP BY
 	title
 ORDER BY 
 	title;
+-- 7 rows
+
+
+--- Alternative way: all_titles_retiring table only keeps the final title so we do not need to do PARTITION
+SELECT 
+	title, COUNT(Title) 
+--INTO title_counts
+FROM
+	all_titles_retiring
+GROUP BY 
+	title
+ORDER BY 
+	title;
+-- 7 rows
 
 /*** Who’s Ready for a Mentor? ***/
 -- Find all employees are born between 1965-01-01 and 1965-12-31
@@ -68,5 +86,5 @@ WHERE
 	AND t.to_date = '9999-01-01'
 ORDER BY 
 	e.last_name, e.first_name;
-
+-- 1549 rows
 

@@ -4,9 +4,11 @@
 
 To create the new list of potential mentors, we need to create a query that returns a list of current employees eligible for retirement, as well as their most recent titles
 
-1- a list of current employees eligible for retirement: "Number of titles-Retiring"
-2- a list of most recent titles: "The Most Recent Titles"
-3- a list of potential mentors: "Who’s Ready for a Mentor?"
+1. a list of current employees eligible for retirement: "Number of titles-Retiring"
+2. a list of most recent titles: "The Most Recent Titles"
+3. a list of potential mentors: "Who’s Ready for a Mentor?"
+
+___
 
 ### ERD Pewlett Hackard Employees
 
@@ -63,6 +65,8 @@ to_date date
 
 [Schema Files](Queries/DDL/schema.sql)
 
+___
+
 ***QUESTION 1:*** A list of current employees eligible for retirement include title: "Number of titles-Retiring"
 
 ***Required Columns:*** 
@@ -113,6 +117,7 @@ WHERE
 ![All_Title_Retiring](All_Titles_Retiring.png)
 
 ***Total Results: 33118 rows*** 
+___
 
 ***QUESTION 2:*** A list of most recent titles of the retirings: "The Most Recent Titles"
 
@@ -184,6 +189,8 @@ ORDER BY
 -- 7 rows
 ```
 
+___
+
 ***Question 3*** A list of potential mentors who can be promoted or step-up : "Who’s Ready for a Mentor?"
 
 ***Required Columns:*** 
@@ -235,6 +242,7 @@ ORDER BY
 ![ready_become_mentors](ready_become_mentors.png)
 
 ***Total Results: 1549 rows*** 
+___
 
 ***Summary***: Let put the retiring titles and mentoring titles of current employees in the same view
 

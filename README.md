@@ -15,7 +15,8 @@ To create the new list of potential mentors, we need to create a query that retu
 ![ERD_PH](ERD_PH.png)
 
 ***Scripts edit on [QuickDBD](https://app.quickdatabasediagrams.com)***
-'''
+
+```
 Departments
 -
 dept_no varchar PK
@@ -57,7 +58,8 @@ emp_no int PK FK >- Employees.emp_no
 dept_no varchar PK FK >- Departments.dept_no
 from_date date
 to_date date
-'''
+```
 ***SQL Scripts to create tables and relationships***
+
 [Schema Files](Queries/DDL/schema.sql)
 

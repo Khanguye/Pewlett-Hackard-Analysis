@@ -28,7 +28,8 @@ ___
 - [Data/all_titles_retiring.csv](Data/all_titles_retiring.csv)
 - [Data/title_counts.csv](Data/title_counts.csv)
 - [Data/ready_to_mentors.csv](Data/ready_to_mentors.csv)
-
+- [Data/side_by_side_titles.csv](Data/side_by_side_titles.csv)
+- [Data/salary_stats_retiring_employees.csv](Data/salary_stats_retiring_employees.csv)
 ___
 
 ### ERD Pewlett Hackard Employees
@@ -279,6 +280,7 @@ ___
 - Create a tempory common table that group and count titles of ready_become_mentors
 - Let join title_counts and the temporary table
 - Use LEFT JOIN for title_counts
+- Create side_by_side_titles table
 
 ```
 With titles_mentors as (
@@ -287,7 +289,8 @@ GROUP BY Title
 Order by title
 	)
 Select
-tr.title, tr.count as retiring_title, tm.count as mentoring_titles, tr.count - tm.count as need_hiring_titles
+tr.title, tr.count as retiring_title, tm.count as mentoring_titles
+into side_by_side_titles
 FROM
 title_counts as tr LEFT JOIN 
 titles_mentors tm ON tr.title = tm.title
@@ -310,7 +313,11 @@ ___
 
 ***Salary Statistics of retiring employees***
 
+- Title, min, max, average, count, sum
+- Create salary_stats_retiring_employees table
+
 ```
+With salary_stats as (
 SELECT 'Assistant Engineer' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Assistant Engineer')
 UNION
 SELECT 'Engineer' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Engineer')
@@ -324,6 +331,10 @@ UNION
 SELECT 'Staff' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Staff')
 UNION
 SELECT 'Technique Leader' as Title, Min(salary), Max(salary), Avg(salary),Count(salary),SUM(salary) FROM  All_Titles_Retiring where title in ('Technique Leader')
+)
+SELECT * 
+into salary_stats_retiring_employees
+FROM salary_stats;
 ```
 
 ***Results***
